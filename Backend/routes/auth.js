@@ -3,7 +3,10 @@ const User=require('../models/users')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
+var jwt = require('jsonwebtoken');
 
+
+const token="shhhhhh";
 
 router.post('/',[
     body('email',"Enter a Valid email").isEmail(),
@@ -17,11 +20,20 @@ router.post('/',[
     }
     const salt = await bcrypt.genSalt(10);
     const secPass=await bcrypt.hash(req.body.password, salt);
-    User.create({
+    const user= await User.create({
         name: req.body.name,
         email:req.body.email,
         password: secPass,
       }).then(user => res.json(user));
-})
+
+  const data={
+    user:{
+    id:User.id
+    }
+  }
+  const authToken=jwt.sign(data,token);
+  res.json({authToken});
+}
+)
 
 module.exports = router
