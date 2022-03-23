@@ -3,6 +3,7 @@ const User = require('../models/users')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
+const fetchUser=require('../middleware/fetchUser')
 var jwt = require('jsonwebtoken');
 
 
@@ -62,6 +63,19 @@ router.post('/login', [
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
+  }
+})
+
+router.post('/getuser',[
+
+],async (req,fetchuser,res)=>{
+  try {
+    let userid="";
+    const user=await User.findById(userid).select("-password");
+    
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("internal error occured")
   }
 })
 module.exports = router
