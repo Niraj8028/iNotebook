@@ -1,9 +1,12 @@
 var jwt = require('jsonwebtoken');
 const token = "shhhhhh";
-const fetchUser=(req,res,next)=>{
+const fetchuser=(req,res,next)=>{
     const authtoken=req.header('auth-token');
+    if (!token) {
+        res.status(401).send({ error: "Please authenticate using a valid token" })
+    }
     try {
-        const data=jwt.verify(authtoken,authtoken);
+        const data=jwt.verify(authtoken,token);
         req.user=data.user;
         next();
     } catch (error) {
@@ -11,4 +14,4 @@ const fetchUser=(req,res,next)=>{
     }
     
 }
-module.exports=fetchUser;
+module.exports=fetchuser;
