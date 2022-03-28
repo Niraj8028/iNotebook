@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
   Routes
-  
+
 } from "react-router-dom";
 
 import About from './Components/About';
@@ -15,17 +15,19 @@ import Notestate from './Context/Notes/NoteState';
 function App() {
   return (
     <>
-    <Notestate>
-    <div className="App">
-    <Navbar/>
-    <Routes>
-      <Route path="/" exact element={<Home/>} />
-      <Route path="/Navbar" exact element={<Navbar/>} />
-      <Route path="/About" exact element={<About/>} />
-      
-    </Routes>
-    </div>
-    </Notestate>
+      <Notestate>
+        <div className="App">
+          <Navbar />
+          <div className='container'>
+            <Routes>
+              <Route path="/" exact element={<Home />} />
+              <Route path="/Navbar" exact element={<Navbar />} />
+              <Route path="/About" exact element={<About />} />
+
+            </Routes>
+          </div>
+        </div>
+      </Notestate>
     </>
   );
 }
