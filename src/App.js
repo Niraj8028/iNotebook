@@ -10,10 +10,12 @@ import {
 } from "react-router-dom";
 
 import About from './Components/About';
+import Notestate from './Context/Notes/NoteState';
 
 function App() {
   return (
     <>
+    <Notestate>
     <div className="App">
     <Navbar/>
     <Routes>
@@ -23,6 +25,7 @@ function App() {
       
     </Routes>
     </div>
+    </Notestate>
     </>
   );
 }
