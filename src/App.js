@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
+
 import {
   BrowserRouter,
   Switch,
@@ -11,13 +12,16 @@ import {
 
 import About from './Components/About';
 import Notestate from './Context/Notes/NoteState';
+import Alerts from './Components/Alerts';
 
 function App() {
   return (
     <>
       <Notestate>
+      
         <div className="App">
           <Navbar />
+          <Alerts/>
           <div className='container'>
             <Routes>
               <Route path="/" exact element={<Home />} />
