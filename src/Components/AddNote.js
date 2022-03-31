@@ -7,7 +7,15 @@ function AddNote() {
     const context=useContext(Notecontext);
     const {addNotes}=context;
 
-    const [addNote, setaddNote] = useState({})
+    const [note, setNote] = useState({title:"",description:"",tag:"default"})
+
+    const handleClick=(e)=>{
+        e.preventDefault();
+        addNotes(note.title,note.description,note.tag);
+    }
+    const onChange=(e)=>{
+      setNote({...note,[e.target.name]: e.target.value})
+    }
   }
   return (
     <div><form>
