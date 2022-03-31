@@ -74,8 +74,14 @@ const Notestate=(props)=>{
         };
         setNotes(notes.concat(note)) 
       }
+
+      const deleteNote=(id)=>{
+       
+        const newnotes=notes.filter((note)=>{ return note._id!==id});
+        setNotes(newnotes);
+      }
     return(
-    <Notecontext.Provider value={{notes,addNote}}>
+    <Notecontext.Provider value={{notes,addNote,deleteNote}}>
         {props.children}
     </Notecontext.Provider>
     )
