@@ -56,21 +56,25 @@ const Notestate=(props)=>{
           "tag": "personal",
           "date": "2022-03-26T15:33:56.776Z",
           "__v": 0
-        },
-        {
-          "_id": "624031d5560f0b901bb5262a",
+        }
+        
+      ]
+      const [notes, setNotes] = useState(initialNotes)
+      const addNotes=(title,description,tag)=>{
+
+        const note={
+          "_id": "624031d51560f0b901bb5262a",
           "user": "6238b78dac243b57ffbaaab0",
-          "title": "sahil dada more",
-          "description": "wake up early",
-          "tag": "personal",
+          "title": title,
+          "description": description,
+          "tag": tag,
           "date": "2022-03-27T09:43:49.720Z",
           "__v": 0
         }
-      ]
-      const [notes, setNotes] = useState(initialNotes)
-
+        setNotes(notes.concat(note));
+      }
     return(
-    <Notecontext.Provider value={{notes,setNotes}}>
+    <Notecontext.Provider value={{notes,addNotes}}>
         {props.children}
     </Notecontext.Provider>
     )
