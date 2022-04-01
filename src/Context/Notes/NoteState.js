@@ -4,13 +4,25 @@ import { useState } from "react";
 const host="http://localhost5000";
 
 const Notestate = (props) => {
-  const initialNotes = [
-  ]
+  const initialNotes = []
   const [notes, setNotes] = useState(initialNotes)
+
+  const getNotes=async()=>{
+    const response = await fetch(`${host}/api/notes/getallnotes`, {
+      method: 'GET', 
+     
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIzOGI3OGRhYzI0M2I1N2ZmYmFhYWIwIn0sImlhdCI6MTY0ODEzMzE3MX0.IPyE8TnRy1v-nDfiIS1sSLcHAn1Q2iVg2Pc1Iu35AVY'
+      },
+    });
+    const json=await response.json();
+    setNotes(json);
+  }
 
   const addNote =async (title, description, tag) => {
     const response = await fetch(`${host}/api/notes/addnotes`, {
-        method: 'post', 
+        method: 'POST', 
        
         headers: {
           'Content-Type': 'application/json',
@@ -52,6 +64,7 @@ const Notestate = (props) => {
         body: JSON.stringify({title,description,tag})
       });
       const json= response.json();
+      
   
     for (let index = 0; index < notes.length; index++) {
       const element = notes[index];
@@ -65,7 +78,7 @@ const Notestate = (props) => {
 }
 
   return (
-    <Notecontext.Provider value={{ notes, addNote, deleteNote, editNote }}>
+    <Notecontext.Provider value={{ notes, addNote, deleteNote, editNote,getNotes }}>
       {props.children}
     </Notecontext.Provider>
   )
