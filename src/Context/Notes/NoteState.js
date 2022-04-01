@@ -80,8 +80,18 @@ const Notestate=(props)=>{
         const newnotes=notes.filter((note)=>{ return note._id!==id});
         setNotes(newnotes);
       }
+      const editNote=(id,title,description,tag)=>{
+        for(let index=0; index<notes.length; index++){
+          const element=notes[index];
+          if(element.id===id){
+            element.title=title;
+            element.description=description;
+            element.tag=tag;
+          }
+        }
+      }
     return(
-    <Notecontext.Provider value={{notes,addNote,deleteNote}}>
+    <Notecontext.Provider value={{notes,addNote,deleteNote,editNote}}>
         {props.children}
     </Notecontext.Provider>
     )
