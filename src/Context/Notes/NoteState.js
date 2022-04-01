@@ -1,9 +1,10 @@
 import Notecontext from "./NoteContext";
 import { useState } from "react";
 
-const host="http://localhost5000";
+
 
 const Notestate = (props) => {
+  const host="http://localhost:5000"
   const initialNotes = []
   const [notes, setNotes] = useState(initialNotes)
 
@@ -64,7 +65,7 @@ const Notestate = (props) => {
         body: JSON.stringify({title,description,tag})
       });
       const json= response.json();
-      
+
   
     for (let index = 0; index < notes.length; index++) {
       const element = notes[index];

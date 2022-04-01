@@ -6,10 +6,8 @@ import Notesitem from './Notesitem';
 const Notes = () => {
     const context = useContext(NoteContext);
     const {notes,getNotes} = context;
-    useEffect(() => {
-      return () => {
-        getNotes();
-      };
+    useEffect(() => {      
+        getNotes();     
     }, [])
     return (
         <div className="row my-3">
