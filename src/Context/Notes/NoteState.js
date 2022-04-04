@@ -5,8 +5,8 @@ import { useState } from "react";
 
 const Notestate = (props) => {
   const host="http://localhost:5000"
-  const initialNotes = []
-  const [notes, setNotes] = useState(initialNotes)
+  
+  const [notes, setNotes] = useState([])
 
   const getNotes=async()=>{
     const response = await fetch(`${host}/api/notes/getallnotes`, {
@@ -14,7 +14,7 @@ const Notestate = (props) => {
      
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIzOGI3OGRhYzI0M2I1N2ZmYmFhYWIwIn0sImlhdCI6MTY0ODEzMzE3MX0.IPyE8TnRy1v-nDfiIS1sSLcHAn1Q2iVg2Pc1Iu35AVY'
+        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIzOGI3OGRhYzI0M2I1N2ZmYmFhYWIwIn0sImlhdCI6MTY0ODEzMTIzM30.hxBJdk_z8n3H1PatfDNWAMNXzA2Clx2bBmjgAQrC23o'
       },
     });
     const json=await response.json();
@@ -52,12 +52,12 @@ const Notestate = (props) => {
      
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIzOGI3OGRhYzI0M2I1N2ZmYmFhYWIwIn0sImlhdCI6MTY0ODEzMzE3MX0IPyE8TnRy1v-nDfiIS1sSLcHAn1Q2iVg2Pc1Iu35AVY'
+        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIzOGI3OGRhYzI0M2I1N2ZmYmFhYWIwIn0sImlhdCI6MTY0ODEzMzE3MX0.IPyE8TnRy1v-nDfiIS1sSLcHAn1Q2iVg2Pc1Iu35AVY'
         
       },
     });
-    const json = response.json();   
-    console.log(json);
+    const resp = response.json();   
+    console.log(resp);
     const newNotes = notes.filter((note) => { return note._id !== id });
     setNotes(newNotes);
   }
@@ -90,7 +90,7 @@ const Notestate = (props) => {
 }
 
   return (
-    <Notecontext.Provider value={{ notes, addNote, deleteNote, editNote,getNotes }}>
+    <Notecontext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </Notecontext.Provider>
   )
