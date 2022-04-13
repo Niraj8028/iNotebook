@@ -1,8 +1,6 @@
 import Notecontext from "./NoteContext";
 import { useState } from "react";
 
-
-
 const Notestate = (props) => {
   const host="http://localhost:5000"
   
@@ -61,8 +59,6 @@ const Notestate = (props) => {
     const newNotes = notes.filter((note) => { return note._id !== id });
     setNotes(newNotes);
   }
-
-
   const editNote = async(id, title, description, tag) => {
     
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
@@ -76,8 +72,7 @@ const Notestate = (props) => {
         body: JSON.stringify({title,description,tag})
       });
       const json= response.json();
-
-  
+ 
     for (let index = 0; index < notes.length; index++) {
       const element = notes[index];
       if (element.id === id) {

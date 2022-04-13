@@ -16,7 +16,7 @@ const AddNote = () => {
       setNote({...note, [e.target.name]: e.target.value})
   }
   return (
-      
+      <>
       <div className="container my-3">
           <h2>Add a Note</h2>
           <form className="my-3">
@@ -36,6 +36,7 @@ const AddNote = () => {
               <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
           </form>
       </div>
+      </>
   )
 }
 
